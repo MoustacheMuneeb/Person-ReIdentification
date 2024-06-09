@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="source">
+    <file>add-photo (1).png</file>
+    <file>arrow-left.png</file>
+    <file>authentication.png</file>
+    <file>cam logo 1.png</file>
+    <file>camera.jpg</file>
+    <file>close.png</file>
+    <file>cross.png</file>
+    <file>expand.png</file>
+    <file>help-web-button.png</file>
+    <file>info.png</file>
+    <file>minimize-sign.png</file>
+    <file>minus.png</file>
+    <file>squares.png</file>
+    <file>user (1).png</file>
+  </qresource>
+</RCC>
