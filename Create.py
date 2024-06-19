@@ -275,6 +275,38 @@ class AddCamera(QtWidgets.QMainWindow):
         self.widget.addWidget(back)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
+    def save_camera(self):
+        print("misha1")
+        camera_name = self.CameraName.text()  # assuming lineEdit_3 is for camera name
+        ip_address = self.IPAddress.text()  # assuming lineEdit is for IP address
+        location = self.Location.toPlainText()  # assuming textEdit is for location
+        if self.save_camera_configuration(camera_name, ip_address, location):
+            self.gotohome()
+
+    def save_camera_configuration(self, camera_name, ip_address, location):
+        print("misha2")
+        camera_name = self.CameraName.text()  # assuming lineEdit_3 is for camera name
+        ip_address = self.IPAddress.text()  # assuming lineEdit is for IP address
+        location = self.Location.toPlainText()  # assuming textEdit is for location
+        try:
+                mydb = mysql.connector.connect(
+                    host="localhost",
+                    user="root",
+                    database="mydata"
+                )
+                cursor = mydb.cursor()
+                sql = "INSERT INTO Cameras (CameraName, IPAddress, Location) VALUES (%s, %s, %s)"
+                val = (camera_name, ip_address, location)
+                cursor.execute(sql, val)
+                mydb.commit()
+                print("Camera configuration saved successfully.")
+                cursor.close()
+                mydb.close()
+        except mysql.connector.Error as err:
+                print("Error:", err)
+                self.error.setText("Error in saving configuration. Please try again.")
+
+
     def adduser(self):
         back = ListUser(self.widget)
         self.widget.addWidget(back)

@@ -499,7 +499,7 @@ QTextEdit {
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_3">
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_3">
+                   <widget class="QLineEdit" name="CameraName">
                     <property name="minimumSize">
                      <size>
                       <width>300</width>
@@ -523,7 +523,7 @@ QTextEdit {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit">
+                   <widget class="QLineEdit" name="IPAddress">
                     <property name="minimumSize">
                      <size>
                       <width>300</width>
@@ -553,7 +553,7 @@ QTextEdit {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTextEdit" name="textEdit">
+                   <widget class="QTextEdit" name="Location">
                     <property name="minimumSize">
                      <size>
                       <width>300</width>
@@ -592,7 +592,7 @@ QTextEdit {
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_5">
+                     <widget class="QPushButton" name="Save">
                       <property name="minimumSize">
                        <size>
                         <width>180</width>
@@ -788,7 +788,6 @@ QPushButton:pressed {
   </widget>
  </widget>
  <resources>
-  <include location="../../../anaconda3/Lib/site-packages/qt5_applications/Qt/bin/resource.qrc"/>
   <include location="images/source.qrc"/>
   <include location="../../Downloads/resource.qrc"/>
  </resources>
