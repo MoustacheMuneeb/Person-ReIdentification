@@ -104,8 +104,8 @@ class Ui_MainWindow(object):
 "}")
         self.home.setObjectName("home")
         self.horizontalLayout.addWidget(self.home)
-        self.pushButton_2 = QtWidgets.QPushButton(self.right_header)
-        self.pushButton_2.setStyleSheet("QPushButton {\n"
+        self.camera = QtWidgets.QPushButton(self.right_header)
+        self.camera.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -119,8 +119,8 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.camera.setObjectName("camera")
+        self.horizontalLayout.addWidget(self.camera)
         self.person = QtWidgets.QPushButton(self.right_header)
         self.person.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
@@ -138,8 +138,8 @@ class Ui_MainWindow(object):
 "}")
         self.person.setObjectName("person")
         self.horizontalLayout.addWidget(self.person)
-        self.pushButton_7 = QtWidgets.QPushButton(self.right_header)
-        self.pushButton_7.setStyleSheet("QPushButton {\n"
+        self.List = QtWidgets.QPushButton(self.right_header)
+        self.List.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -153,10 +153,10 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.horizontalLayout.addWidget(self.pushButton_7)
-        self.pushButton_4 = QtWidgets.QPushButton(self.right_header)
-        self.pushButton_4.setStyleSheet("QPushButton {\n"
+        self.List.setObjectName("List")
+        self.horizontalLayout.addWidget(self.List)
+        self.log = QtWidgets.QPushButton(self.right_header)
+        self.log.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -170,8 +170,8 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout.addWidget(self.pushButton_4)
+        self.log.setObjectName("log")
+        self.horizontalLayout.addWidget(self.log)
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
         self.horizontalLayout_11.addWidget(self.right_header)
         self.verticalLayout.addWidget(self.Header)
@@ -260,40 +260,40 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit_3.setMinimumSize(QtCore.QSize(300, 60))
-        self.lineEdit_3.setMaximumSize(QtCore.QSize(300, 60))
+        self.CameraName = QtWidgets.QLineEdit(self.frame)
+        self.CameraName.setMinimumSize(QtCore.QSize(300, 60))
+        self.CameraName.setMaximumSize(QtCore.QSize(300, 60))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.lineEdit_3.setFont(font)
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.verticalLayout_3.addWidget(self.lineEdit_3)
-        self.lineEdit = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit.setMinimumSize(QtCore.QSize(300, 60))
-        self.lineEdit.setMaximumSize(QtCore.QSize(300, 60))
+        self.CameraName.setFont(font)
+        self.CameraName.setObjectName("CameraName")
+        self.verticalLayout_3.addWidget(self.CameraName)
+        self.IPAddress = QtWidgets.QLineEdit(self.frame)
+        self.IPAddress.setMinimumSize(QtCore.QSize(300, 60))
+        self.IPAddress.setMaximumSize(QtCore.QSize(300, 60))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setStyleSheet("")
-        self.lineEdit.setText("")
-        self.lineEdit.setObjectName("lineEdit")
-        self.verticalLayout_3.addWidget(self.lineEdit)
-        self.textEdit = QtWidgets.QTextEdit(self.frame)
-        self.textEdit.setMinimumSize(QtCore.QSize(300, 100))
-        self.textEdit.setMaximumSize(QtCore.QSize(300, 100))
+        self.IPAddress.setFont(font)
+        self.IPAddress.setStyleSheet("")
+        self.IPAddress.setText("")
+        self.IPAddress.setObjectName("IPAddress")
+        self.verticalLayout_3.addWidget(self.IPAddress)
+        self.Location = QtWidgets.QTextEdit(self.frame)
+        self.Location.setMinimumSize(QtCore.QSize(300, 100))
+        self.Location.setMaximumSize(QtCore.QSize(300, 100))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.textEdit.setFont(font)
-        self.textEdit.setObjectName("textEdit")
-        self.verticalLayout_3.addWidget(self.textEdit)
+        self.Location.setFont(font)
+        self.Location.setObjectName("Location")
+        self.verticalLayout_3.addWidget(self.Location)
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_13.addItem(spacerItem5)
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_5.setMinimumSize(QtCore.QSize(180, 50))
-        self.pushButton_5.setMaximumSize(QtCore.QSize(170, 70))
-        self.pushButton_5.setStyleSheet("QPushButton {\n"
+        self.Save = QtWidgets.QPushButton(self.frame)
+        self.Save.setMinimumSize(QtCore.QSize(180, 50))
+        self.Save.setMaximumSize(QtCore.QSize(170, 70))
+        self.Save.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -308,8 +308,8 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.horizontalLayout_13.addWidget(self.pushButton_5)
+        self.Save.setObjectName("Save")
+        self.horizontalLayout_13.addWidget(self.Save)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_13.addItem(spacerItem6)
         self.verticalLayout_3.addLayout(self.horizontalLayout_13)
@@ -366,16 +366,16 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_3.setText(_translate("MainWindow", "PERSON REID"))
         self.home.setText(_translate("MainWindow", "Home"))
-        self.pushButton_2.setText(_translate("MainWindow", "Add Camera"))
+        self.camera.setText(_translate("MainWindow", "Add Camera"))
         self.person.setText(_translate("MainWindow", "Search Person"))
-        self.pushButton_7.setText(_translate("MainWindow", "List User"))
-        self.pushButton_4.setText(_translate("MainWindow", "Logout"))
+        self.List.setText(_translate("MainWindow", "List User"))
+        self.log.setText(_translate("MainWindow", "Logout"))
         self.label_10.setText(_translate("MainWindow", "Add new camera"))
         self.label_11.setText(_translate("MainWindow", "Enter specifications to integrate a new camera"))
-        self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "Camera name"))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "IP address"))
-        self.textEdit.setPlaceholderText(_translate("MainWindow", "Location"))
-        self.pushButton_5.setText(_translate("MainWindow", "Save Configuration"))
+        self.CameraName.setPlaceholderText(_translate("MainWindow", "Camera name"))
+        self.IPAddress.setPlaceholderText(_translate("MainWindow", "IP address"))
+        self.Location.setPlaceholderText(_translate("MainWindow", "Location"))
+        self.Save.setText(_translate("MainWindow", "Save Configuration"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
 
 import source

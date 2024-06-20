@@ -16,14 +16,9 @@ class Welcomescreen(QtWidgets.QMainWindow):
         self.widget = widget
         self.login.clicked.connect(self.gotologin)
 
-
     def gotologin(self):
         login = LoginScreen(self.widget)
         self.add_screen(login)
-
-    def gotocreate(self):
-        create = CreateAccScreen(self.widget)
-        self.add_screen(create)
 
     def add_screen(self, screen):
         self.widget.addWidget(screen)
@@ -36,7 +31,6 @@ class LoginScreen(QtWidgets.QMainWindow):
         loadUi("loginpage.ui", self)
         self.widget = widget
         self.signin.clicked.connect(self.loginfunction)
-        self.back.clicked.connect(self.gotocreateaccount)
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
 
         # Email Validation
@@ -90,61 +84,8 @@ class LoginScreen(QtWidgets.QMainWindow):
             except mysql.connector.Error as err:
                 print("Error:", err)
 
-    def gotocreateaccount(self):
-        creating = CreateAccScreen(self.widget)
-        self.widget.addWidget(creating)
-        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
-
     def is_valid_email(self, email):
         return re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', email) is not None
-
-
-class CreateAccScreen(QtWidgets.QMainWindow):
-    def __init__(self, widget):
-        super(CreateAccScreen, self).__init__()
-        loadUi("createAccount.ui", self)
-        self.widget = widget
-        self.signup.clicked.connect(self.signupfunction)
-        self.back.clicked.connect(self.gotologin)
-
-    def signupfunction(self):
-        user = self.emailfield.text()
-        password = self.passwordfield.text()
-        if len(user) == 0 or len(password) == 0:
-            self.error.setText("Please input all fields")
-        else:
-            try:
-                mydb = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    database="mydata"
-                )
-                print("Connected to MySQL database!")
-
-                cursor = mydb.cursor()
-
-                query = "INSERT INTO login (Email, Password) VALUES (%s, %s)"
-                cursor.execute(query, (user, password))
-
-                mydb.commit()
-
-                print("Signup successful")
-
-                cursor.close()
-                mydb.close()
-
-                login_page = LoginScreen(self.widget)
-                self.widget.addWidget(login_page)
-                self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
-
-            except mysql.connector.Error as err:
-                print("Error:", err)
-                self.error.setText("Error creating account. Please try again.")
-
-    def gotologin(self):
-        back = LoginScreen(self.widget)
-        self.widget.addWidget(back)
-        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
 
 class HomeScreen(QtWidgets.QMainWindow):
@@ -259,8 +200,7 @@ class SearchPerson(QtWidgets.QMainWindow):
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
 
-class AddCamera(QtWidgets.QMainWindow):
-
+class AddCamera(QMainWindow):
     def __init__(self, widget):
         super(AddCamera, self).__init__()
         loadUi("add_camera_page.ui", self)
@@ -269,6 +209,7 @@ class AddCamera(QtWidgets.QMainWindow):
         self.person.clicked.connect(self.gotosearch)
         self.List.clicked.connect(self.adduser)
         self.log.clicked.connect(self.gotologin)
+
 
     def gotologin(self):
         back = LoginScreen(self.widget)
@@ -289,23 +230,22 @@ class AddCamera(QtWidgets.QMainWindow):
         ip_address = self.IPAddress.text()  # assuming lineEdit is for IP address
         location = self.Location.toPlainText()  # assuming textEdit is for location
         try:
-                mydb = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    database="mydata"
-                )
-                cursor = mydb.cursor()
-                sql = "INSERT INTO Cameras (CameraName, IPAddress, Location) VALUES (%s, %s, %s)"
-                val = (camera_name, ip_address, location)
-                cursor.execute(sql, val)
-                mydb.commit()
-                print("Camera configuration saved successfully.")
-                cursor.close()
-                mydb.close()
+            mydb = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                database="mydata"
+            )
+            cursor = mydb.cursor()
+            sql = "INSERT INTO Cameras (CameraName, IPAddress, Location) VALUES (%s, %s, %s)"
+            val = (camera_name, ip_address, location)
+            cursor.execute(sql, val)
+            mydb.commit()
+            print("Camera configuration saved successfully.")
+            cursor.close()
+            mydb.close()
         except mysql.connector.Error as err:
-                print("Error:", err)
-                self.error.setText("Error in saving configuration. Please try again.")
-
+            print("Error:", err)
+            self.error.setText("Error in saving configuration. Please try again.")
 
     def adduser(self):
         back = ListUser(self.widget)
