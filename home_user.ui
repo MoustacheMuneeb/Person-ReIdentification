@@ -441,7 +441,7 @@ qproperty-alignment: AlignCenter;
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="image_label">
            <property name="minimumSize">
             <size>
              <width>180</width>
@@ -663,9 +663,9 @@ qproperty-alignment: AlignCenter;
   </widget>
  </widget>
  <resources>
-  <include location="../../Downloads/resource.qrc"/>
   <include location="images/source.qrc"/>
-  <include location="../../Downloads/images/source.qrc"/>
+  <include location="images/source.qrc"/>
+  <include location="images/source.qrc"/>
  </resources>
  <connections/>
 </ui>
