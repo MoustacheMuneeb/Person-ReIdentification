@@ -8,6 +8,10 @@ from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QPushButton, QCheckBo
     QFileDialog
 from PyQt5.QtGui import QRegularExpressionValidator, QColor
 
+from PyQt5.QtWidgets import QVBoxLayout, QWidget
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import QTimer
+import cv2
 
 class Welcomescreen(QtWidgets.QMainWindow):
     def __init__(self, widget):
@@ -89,7 +93,7 @@ class LoginScreen(QtWidgets.QMainWindow):
 
 
 class HomeScreen(QtWidgets.QMainWindow):
-    def __init__(self, widget):
+    def __init__(self, widget, rtsp_url=None):
         super(HomeScreen, self).__init__()
         loadUi("home_page.ui", self)
         self.widget = widget
@@ -97,6 +101,31 @@ class HomeScreen(QtWidgets.QMainWindow):
         self.camera.clicked.connect(self.addcamera)
         self.List.clicked.connect(self.adduser)
         self.log.clicked.connect(self.gotologin)
+        self.rtsp_url = rtsp_url
+        self.initUI()
+
+    def initUI(self):
+        if self.rtsp_url:
+            self.display_stream(self.rtsp_url)
+
+    def display_stream(self, rtsp_url):
+        self.capture = cv2.VideoCapture(rtsp_url)
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_frame)
+        self.timer.start(30)
+
+    def update_frame(self):
+        ret, frame = self.capture.read()
+        if ret:
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            height, width, channel = image.shape
+            step = channel * width
+            qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
+            self.image_label.setPixmap(QPixmap.fromImage(qImg))
+
+    def closeEvent(self, event):
+        if self.capture.isOpened():
+            self.capture.release()
 
     def gotologin(self):
         back = LoginScreen(self.widget)
@@ -209,7 +238,7 @@ class AddCamera(QMainWindow):
         self.person.clicked.connect(self.gotosearch)
         self.List.clicked.connect(self.adduser)
         self.log.clicked.connect(self.gotologin)
-
+        self.Save.clicked.connect(self.save_camera)  # Connect the Save button to save_camera method
 
     def gotologin(self):
         back = LoginScreen(self.widget)
@@ -218,17 +247,15 @@ class AddCamera(QMainWindow):
 
     def save_camera(self):
         print("misha1")
-        camera_name = self.CameraName.text()  # assuming lineEdit_3 is for camera name
-        ip_address = self.IPAddress.text()  # assuming lineEdit is for IP address
-        location = self.Location.toPlainText()  # assuming textEdit is for location
-        if self.save_camera_configuration(camera_name, ip_address, location):
-            self.gotohome()
+        camera_name = self.CameraName.text()  # assuming CameraName is the object name for camera name field
+        ip_address = self.IPAddress.text()  # assuming IPAddress is the object name for IP address field
+        location = self.Location.toPlainText()  # assuming Location is the object name for location field
+        rtsp_url = f"rtsp://{ip_address}:554/stream1"  # Convert IP address to RTSP URL
+        if self.save_camera_configuration(camera_name, rtsp_url, location):
+            self.gotohome(rtsp_url)
 
     def save_camera_configuration(self, camera_name, ip_address, location):
         print("misha2")
-        camera_name = self.CameraName.text()  # assuming lineEdit_3 is for camera name
-        ip_address = self.IPAddress.text()  # assuming lineEdit is for IP address
-        location = self.Location.toPlainText()  # assuming textEdit is for location
         try:
             mydb = mysql.connector.connect(
                 host="localhost",
@@ -243,17 +270,19 @@ class AddCamera(QMainWindow):
             print("Camera configuration saved successfully.")
             cursor.close()
             mydb.close()
+            return True
         except mysql.connector.Error as err:
             print("Error:", err)
             self.error.setText("Error in saving configuration. Please try again.")
+            return False
 
     def adduser(self):
         back = ListUser(self.widget)
         self.widget.addWidget(back)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
-    def gotohome(self):
-        home_screen = HomeScreen(self.widget)
+    def gotohome(self, rtsp_url=None):
+        home_screen = HomeScreen(self.widget, rtsp_url)
         self.widget.addWidget(home_screen)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
@@ -261,7 +290,6 @@ class AddCamera(QMainWindow):
         search_person = SearchPerson(self.widget)
         self.widget.addWidget(search_person)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
-
 
 class ListUser(QtWidgets.QMainWindow):
     def __init__(self, widget):
