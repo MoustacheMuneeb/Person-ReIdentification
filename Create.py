@@ -15,7 +15,7 @@ class Welcomescreen(QtWidgets.QMainWindow):
         loadUi("wwlcome.ui", self)
         self.widget = widget
         self.login.clicked.connect(self.gotologin)
-        self.create.clicked.connect(self.gotocreate)
+
 
     def gotologin(self):
         login = LoginScreen(self.widget)

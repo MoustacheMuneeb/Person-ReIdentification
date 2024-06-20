@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(841, 600)
+        MainWindow.resize(849, 606)
         MainWindow.setStyleSheet("background-color:rgb(17, 25, 31)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -188,17 +188,6 @@ class Ui_MainWindow(object):
         self.signin.setObjectName("signin")
         self.verticalLayout_2.addWidget(self.signin)
         self.verticalLayout_3.addWidget(self.frame)
-        self.pushButton = QtWidgets.QPushButton(self.Main)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        font.setUnderline(True)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("color: rgb(255, 255, 255);")
-        self.pushButton.setCheckable(False)
-        self.pushButton.setDefault(False)
-        self.pushButton.setFlat(True)
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_3.addWidget(self.pushButton)
         self.verticalLayout_4.addLayout(self.verticalLayout_3)
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_4.addItem(spacerItem2)
@@ -258,7 +247,6 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Password:"))
         self.passwordfield.setPlaceholderText(_translate("MainWindow", "Enter the Password"))
         self.signin.setText(_translate("MainWindow", "Log in"))
-        self.pushButton.setText(_translate("MainWindow", "Create new account!"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
 import source
 

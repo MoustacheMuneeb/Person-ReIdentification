@@ -121,8 +121,8 @@ class Ui_MainWindow(object):
 "}")
         self.search_person.setObjectName("search_person")
         self.horizontalLayout.addWidget(self.search_person)
-        self.pushButton_4 = QtWidgets.QPushButton(self.right_header)
-        self.pushButton_4.setStyleSheet("QPushButton {\n"
+        self.log = QtWidgets.QPushButton(self.right_header)
+        self.log.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -136,11 +136,11 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout.addWidget(self.pushButton_4)
+        self.log.setObjectName("log")
+        self.horizontalLayout.addWidget(self.log)
         self.horizontalLayout_6.addLayout(self.horizontalLayout)
         self.horizontalLayout_8.addWidget(self.right_header)
-        self.verticalLayout.addWidget(self.Header)
+        self.verticalLayout.addWidget(self.Header, 0, QtCore.Qt.AlignTop)
         self.Main = QtWidgets.QFrame(self.centralwidget)
         self.Main.setStyleSheet("")
         self.Main.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -317,7 +317,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "PERSON REID"))
         self.pushButton.setText(_translate("MainWindow", "Home"))
         self.search_person.setText(_translate("MainWindow", "Search Person"))
-        self.pushButton_4.setText(_translate("MainWindow", "Logout"))
+        self.log.setText(_translate("MainWindow", "Logout"))
         self.label_10.setText(_translate("MainWindow", "Live Camera Feed"))
         self.label_11.setText(_translate("MainWindow", "Monitor upto 6 cameras for person re-identification "))
         self.label_5.setText(_translate("MainWindow", "Camera 2"))
@@ -329,7 +329,6 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
 
 import source
-
 
 if __name__ == "__main__":
     import sys

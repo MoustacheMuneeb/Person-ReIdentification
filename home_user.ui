@@ -33,7 +33,7 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
+    <item alignment="Qt::AlignTop">
      <widget class="QFrame" name="Header">
       <property name="styleSheet">
        <string notr="true">color: rgb(245, 245, 245);</string>

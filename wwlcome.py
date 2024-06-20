@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(798, 600)
+        MainWindow.resize(684, 591)
         MainWindow.setStyleSheet("\n"
 "    background-color: rgba(17, 25, 31); /* Using rgba to set opacity */\n"
 "    background-image: url(:/source/cam logo 1.png);\n"
@@ -24,8 +24,11 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.Header = QtWidgets.QFrame(self.centralwidget)
-        self.Header.setGeometry(QtCore.QRect(0, 0, 801, 61))
         self.Header.setStyleSheet("\n"
 "color: rgb(255, 255, 255);\n"
 "background:none;\n"
@@ -33,22 +36,25 @@ class Ui_MainWindow(object):
         self.Header.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.Header.setFrameShadow(QtWidgets.QFrame.Raised)
         self.Header.setObjectName("Header")
-        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.Header)
-        self.horizontalLayout_11.setContentsMargins(0, 5, 0, 0)
-        self.horizontalLayout_11.setSpacing(0)
-        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
         self.left_header = QtWidgets.QFrame(self.Header)
+        self.left_header.setGeometry(QtCore.QRect(9, 4, 16777215, 16777215))
+        self.left_header.setMinimumSize(QtCore.QSize(0, 0))
+        self.left_header.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.left_header.setStyleSheet("color: rgb(187, 198, 206);")
         self.left_header.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.left_header.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.left_header.setMidLineWidth(0)
         self.left_header.setObjectName("left_header")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.left_header)
-        self.horizontalLayout_7.setContentsMargins(5, 0, 0, 0)
-        self.horizontalLayout_7.setSpacing(0)
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.label_2 = QtWidgets.QLabel(self.left_header)
+        self.widget = QtWidgets.QWidget(self.left_header)
+        self.widget.setGeometry(QtCore.QRect(3, 3, 541, 54))
+        self.widget.setObjectName("widget")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_2 = QtWidgets.QLabel(self.widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -61,8 +67,8 @@ class Ui_MainWindow(object):
         self.label_2.setPixmap(QtGui.QPixmap(":/source/cam logo 1.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
-        self.horizontalLayout_6.addWidget(self.label_2)
-        self.label_3 = QtWidgets.QLabel(self.left_header)
+        self.horizontalLayout.addWidget(self.label_2)
+        self.label_3 = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -70,31 +76,11 @@ class Ui_MainWindow(object):
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("margin: 5px;")
         self.label_3.setObjectName("label_3")
-        self.horizontalLayout_6.addWidget(self.label_3)
+        self.horizontalLayout.addWidget(self.label_3)
+        self.horizontalLayout_2.addLayout(self.horizontalLayout)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem)
-        self.horizontalLayout_7.addLayout(self.horizontalLayout_6)
-        self.horizontalLayout_11.addWidget(self.left_header)
-        self.right_header = QtWidgets.QFrame(self.Header)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.right_header.setFont(font)
-        self.right_header.setStyleSheet("QPushButton {\n"
-"  margin-right: 10px; /* Adjust the value as needed */\n"
-"  padding: 5px 10px; /* Adjust the value as needed */\n"
-"}\n"
-"")
-        self.right_header.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.right_header.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.right_header.setObjectName("right_header")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.right_header)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.login = QtWidgets.QPushButton(self.right_header)
+        self.horizontalLayout_2.addItem(spacerItem)
+        self.login = QtWidgets.QPushButton(self.widget)
         self.login.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
@@ -110,28 +96,9 @@ class Ui_MainWindow(object):
 "    background-color: rgb(90, 128, 143);\n"
 "}")
         self.login.setObjectName("login")
-        self.horizontalLayout.addWidget(self.login)
-        self.create = QtWidgets.QPushButton(self.right_header)
-        self.create.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(101, 144, 161);\n"
-"    color: white;\n"
-"    border-radius: 5px;\n"
-"    padding:10px;\n"
-"    font-weight: bold;\n"
-"    font-size: 14px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color:rgb(90, 128, 143);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(90, 128, 143);\n"
-"}")
-        self.create.setObjectName("create")
-        self.horizontalLayout.addWidget(self.create)
-        self.horizontalLayout_2.addLayout(self.horizontalLayout)
-        self.horizontalLayout_11.addWidget(self.right_header)
+        self.horizontalLayout_2.addWidget(self.login)
+        self.verticalLayout.addWidget(self.Header)
         self.footer = QtWidgets.QFrame(self.centralwidget)
-        self.footer.setGeometry(QtCore.QRect(0, 570, 801, 31))
         self.footer.setStyleSheet("color: rgb(187, 198, 206);\n"
 "background:none;")
         self.footer.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -162,6 +129,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.addItem(spacerItem1)
         self.horizontalLayout_5.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_3.addWidget(self.left_footer_2, 0, QtCore.Qt.AlignBottom)
+        self.verticalLayout.addWidget(self.footer)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -172,7 +140,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_3.setText(_translate("MainWindow", "PERSON REID"))
         self.login.setText(_translate("MainWindow", "Sign in"))
-        self.create.setText(_translate("MainWindow", "Signup"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
 import source
 
