@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(762, 571)
+        MainWindow.resize(826, 571)
         MainWindow.setStyleSheet("background-color:rgb(17, 25, 31)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -178,10 +178,17 @@ class Ui_MainWindow(object):
         self.Main.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.Main.setFrameShadow(QtWidgets.QFrame.Raised)
         self.Main.setObjectName("Main")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.Main)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        spacerItem1 = QtWidgets.QSpacerItem(20, 417, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem1, 0, 1, 3, 1)
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.Main)
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem1)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 417, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.horizontalLayout_7.addItem(spacerItem2)
+        self.horizontalLayout_10.addLayout(self.horizontalLayout_7)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label_10 = QtWidgets.QLabel(self.Main)
@@ -206,15 +213,13 @@ class Ui_MainWindow(object):
         self.label_11.setStyleSheet("color:rgb(115, 130, 140);")
         self.label_11.setObjectName("label_11")
         self.verticalLayout_2.addWidget(self.label_11)
-        self.gridLayout_2.addLayout(self.verticalLayout_2, 0, 2, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 425, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem2, 0, 3, 3, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem3, 1, 0, 1, 1)
+        self.verticalLayout_3.addLayout(self.verticalLayout_2)
         self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
         self.label_5 = QtWidgets.QLabel(self.Main)
-        self.label_5.setMinimumSize(QtCore.QSize(180, 150))
+        self.label_5.setMinimumSize(QtCore.QSize(250, 200))
+        self.label_5.setMaximumSize(QtCore.QSize(250, 200))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -227,39 +232,10 @@ class Ui_MainWindow(object):
 "    background-color: rgb(225, 225, 225);\n"
 "}")
         self.label_5.setObjectName("label_5")
-        self.gridLayout.addWidget(self.label_5, 0, 1, 1, 1)
-        self.label_12 = QtWidgets.QLabel(self.Main)
-        self.label_12.setMinimumSize(QtCore.QSize(180, 150))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_12.setFont(font)
-        self.label_12.setStyleSheet("QLabel{\n"
-"color:rgb(170, 170, 170);\n"
-"margin: 5px;\n"
-"qproperty-alignment: AlignCenter;\n"
-"    background-color: rgb(225, 225, 225);\n"
-"}")
-        self.label_12.setObjectName("label_12")
-        self.gridLayout.addWidget(self.label_12, 0, 2, 1, 1)
-        self.image_label = QtWidgets.QLabel(self.Main)
-        self.image_label.setMinimumSize(QtCore.QSize(180, 180))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.image_label.setFont(font)
-        self.image_label.setStyleSheet("QLabel{\n"
-"color:rgb(170, 170, 170);\n"
-"margin: 5px;\n"
-"qproperty-alignment: AlignCenter;\n"
-"    background-color: rgb(225, 225, 225);\n"
-"}")
-        self.image_label.setObjectName("image_label")
-        self.gridLayout.addWidget(self.image_label, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_5, 0, 5, 1, 1)
         self.label_8 = QtWidgets.QLabel(self.Main)
-        self.label_8.setMinimumSize(QtCore.QSize(180, 150))
+        self.label_8.setMinimumSize(QtCore.QSize(250, 200))
+        self.label_8.setMaximumSize(QtCore.QSize(250, 200))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -272,24 +248,10 @@ class Ui_MainWindow(object):
 "    background-color: rgb(225, 225, 225);\n"
 "}")
         self.label_8.setObjectName("label_8")
-        self.gridLayout.addWidget(self.label_8, 1, 1, 1, 1)
-        self.label_7 = QtWidgets.QLabel(self.Main)
-        self.label_7.setMinimumSize(QtCore.QSize(180, 180))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_7.setFont(font)
-        self.label_7.setStyleSheet("QLabel{\n"
-"color:rgb(170, 170, 170);\n"
-"margin: 5px;\n"
-"qproperty-alignment: AlignCenter;\n"
-"    background-color: rgb(225, 225, 225);\n"
-"}")
-        self.label_7.setObjectName("label_7")
-        self.gridLayout.addWidget(self.label_7, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_8, 1, 5, 1, 1)
         self.label_9 = QtWidgets.QLabel(self.Main)
-        self.label_9.setMinimumSize(QtCore.QSize(180, 150))
+        self.label_9.setMinimumSize(QtCore.QSize(250, 200))
+        self.label_9.setMaximumSize(QtCore.QSize(250, 200))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -302,10 +264,64 @@ class Ui_MainWindow(object):
 "    background-color: rgb(225, 225, 225);\n"
 "}")
         self.label_9.setObjectName("label_9")
-        self.gridLayout.addWidget(self.label_9, 1, 2, 1, 1)
-        self.gridLayout_2.addLayout(self.gridLayout, 1, 2, 2, 1)
+        self.gridLayout.addWidget(self.label_9, 1, 6, 1, 1)
+        self.label_7 = QtWidgets.QLabel(self.Main)
+        self.label_7.setMinimumSize(QtCore.QSize(250, 200))
+        self.label_7.setMaximumSize(QtCore.QSize(250, 200))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setStyleSheet("QLabel{\n"
+"color:rgb(170, 170, 170);\n"
+"margin: 5px;\n"
+"qproperty-alignment: AlignCenter;\n"
+"    background-color: rgb(225, 225, 225);\n"
+"}")
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 1, 2, 1, 1)
+        self.label_12 = QtWidgets.QLabel(self.Main)
+        self.label_12.setMinimumSize(QtCore.QSize(250, 200))
+        self.label_12.setMaximumSize(QtCore.QSize(250, 200))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_12.setFont(font)
+        self.label_12.setStyleSheet("QLabel{\n"
+"color:rgb(170, 170, 170);\n"
+"margin: 5px;\n"
+"qproperty-alignment: AlignCenter;\n"
+"    background-color: rgb(225, 225, 225);\n"
+"}")
+        self.label_12.setObjectName("label_12")
+        self.gridLayout.addWidget(self.label_12, 0, 6, 1, 1)
+        self.image_label = QtWidgets.QLabel(self.Main)
+        self.image_label.setMinimumSize(QtCore.QSize(250, 200))
+        self.image_label.setMaximumSize(QtCore.QSize(250, 200))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.image_label.setFont(font)
+        self.image_label.setStyleSheet("QLabel{\n"
+"color:rgb(170, 170, 170);\n"
+"margin: 5px;\n"
+"qproperty-alignment: AlignCenter;\n"
+"    background-color: rgb(225, 225, 225);\n"
+"}")
+        self.image_label.setObjectName("image_label")
+        self.gridLayout.addWidget(self.image_label, 0, 2, 1, 1)
+        self.verticalLayout_3.addLayout(self.gridLayout)
+        self.horizontalLayout_10.addLayout(self.verticalLayout_3)
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        spacerItem3 = QtWidgets.QSpacerItem(20, 425, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.horizontalLayout_9.addItem(spacerItem3)
         spacerItem4 = QtWidgets.QSpacerItem(38, 48, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem4, 2, 4, 1, 1)
+        self.horizontalLayout_9.addItem(spacerItem4)
+        self.horizontalLayout_10.addLayout(self.horizontalLayout_9)
         self.verticalLayout.addWidget(self.Main)
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setStyleSheet("color: rgb(187, 198, 206);")
@@ -355,11 +371,11 @@ class Ui_MainWindow(object):
         self.label_10.setText(_translate("MainWindow", "Live Camera Feed"))
         self.label_11.setText(_translate("MainWindow", "Monitor upto 6 cameras for person re-identification "))
         self.label_5.setText(_translate("MainWindow", "Camera 2"))
+        self.label_8.setText(_translate("MainWindow", "Camera 5"))
+        self.label_9.setText(_translate("MainWindow", "Camera 6"))
+        self.label_7.setText(_translate("MainWindow", "Camera 4"))
         self.label_12.setText(_translate("MainWindow", "Camera 3"))
         self.image_label.setText(_translate("MainWindow", "Camera 1"))
-        self.label_8.setText(_translate("MainWindow", "Camera 5"))
-        self.label_7.setText(_translate("MainWindow", "Camera 4"))
-        self.label_9.setText(_translate("MainWindow", "Camera 6"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
 import source
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
+    <width>848</width>
     <height>571</height>
    </rect>
   </property>
@@ -388,8 +388,14 @@ color: rgb(225, 230, 235);</string>
           <widget class="QLabel" name="label_5">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>150</height>
+             <width>250</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>200</height>
             </size>
            </property>
            <property name="font">
@@ -416,8 +422,14 @@ qproperty-alignment: AlignCenter;
           <widget class="QLabel" name="label_12">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>150</height>
+             <width>250</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>200</height>
             </size>
            </property>
            <property name="font">
@@ -444,8 +456,14 @@ qproperty-alignment: AlignCenter;
           <widget class="QLabel" name="image_label">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>180</height>
+             <width>250</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>200</height>
             </size>
            </property>
            <property name="font">
@@ -472,8 +490,14 @@ qproperty-alignment: AlignCenter;
           <widget class="QLabel" name="label_8">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>150</height>
+             <width>250</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>200</height>
             </size>
            </property>
            <property name="font">
@@ -500,8 +524,14 @@ qproperty-alignment: AlignCenter;
           <widget class="QLabel" name="label_7">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>180</height>
+             <width>250</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>200</height>
             </size>
            </property>
            <property name="font">
@@ -528,8 +558,14 @@ qproperty-alignment: AlignCenter;
           <widget class="QLabel" name="label_9">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>150</height>
+             <width>250</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>200</height>
             </size>
            </property>
            <property name="font">

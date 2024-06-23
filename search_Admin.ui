@@ -787,7 +787,7 @@ qproperty-alignment: AlignCenter;
   </widget>
  </widget>
  <resources>
-  <include location="../../Downloads/resource.qrc"/>
+  <include location="images/source.qrc"/>
   <include location="images/source.qrc"/>
  </resources>
  <connections/>
