@@ -243,21 +243,21 @@ class Ui_MainWindow(object):
 "}")
         self.label_12.setObjectName("label_12")
         self.gridLayout.addWidget(self.label_12, 0, 2, 1, 1)
-        self.label_4 = QtWidgets.QLabel(self.Main)
-        self.label_4.setMinimumSize(QtCore.QSize(180, 180))
+        self.image_label = QtWidgets.QLabel(self.Main)
+        self.image_label.setMinimumSize(QtCore.QSize(180, 180))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.label_4.setFont(font)
-        self.label_4.setStyleSheet("QLabel{\n"
+        self.image_label.setFont(font)
+        self.image_label.setStyleSheet("QLabel{\n"
 "color:rgb(170, 170, 170);\n"
 "margin: 5px;\n"
 "qproperty-alignment: AlignCenter;\n"
 "    background-color: rgb(225, 225, 225);\n"
 "}")
-        self.label_4.setObjectName("label_4")
-        self.gridLayout.addWidget(self.label_4, 0, 0, 1, 1)
+        self.image_label.setObjectName("image_label")
+        self.gridLayout.addWidget(self.image_label, 0, 0, 1, 1)
         self.label_8 = QtWidgets.QLabel(self.Main)
         self.label_8.setMinimumSize(QtCore.QSize(180, 150))
         font = QtGui.QFont()
@@ -356,13 +356,13 @@ class Ui_MainWindow(object):
         self.label_11.setText(_translate("MainWindow", "Monitor upto 6 cameras for person re-identification "))
         self.label_5.setText(_translate("MainWindow", "Camera 2"))
         self.label_12.setText(_translate("MainWindow", "Camera 3"))
-        self.label_4.setText(_translate("MainWindow", "Camera 1"))
+        self.image_label.setText(_translate("MainWindow", "Camera 1"))
         self.label_8.setText(_translate("MainWindow", "Camera 5"))
         self.label_7.setText(_translate("MainWindow", "Camera 4"))
         self.label_9.setText(_translate("MainWindow", "Camera 6"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
-
 import source
+
 
 if __name__ == "__main__":
     import sys
