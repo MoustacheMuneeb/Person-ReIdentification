@@ -146,8 +146,8 @@ class Ui_MainWindow(object):
 "}")
         self.person.setObjectName("person")
         self.horizontalLayout.addWidget(self.person)
-        self.pushButton_7 = QtWidgets.QPushButton(self.right_header)
-        self.pushButton_7.setStyleSheet("QPushButton {\n"
+        self.List = QtWidgets.QPushButton(self.right_header)
+        self.List.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -161,10 +161,10 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.horizontalLayout.addWidget(self.pushButton_7)
-        self.pushButton_4 = QtWidgets.QPushButton(self.right_header)
-        self.pushButton_4.setStyleSheet("QPushButton {\n"
+        self.List.setObjectName("List")
+        self.horizontalLayout.addWidget(self.List)
+        self.log = QtWidgets.QPushButton(self.right_header)
+        self.log.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -178,8 +178,8 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout.addWidget(self.pushButton_4)
+        self.log.setObjectName("log")
+        self.horizontalLayout.addWidget(self.log)
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
         self.horizontalLayout_11.addWidget(self.right_header)
         self.verticalLayout.addWidget(self.Header)
@@ -204,7 +204,9 @@ class Ui_MainWindow(object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setSpacing(6)
@@ -234,13 +236,12 @@ class Ui_MainWindow(object):
         self.label_11.setObjectName("label_11")
         self.verticalLayout_2.addWidget(self.label_11)
         self.verticalLayout_3.addLayout(self.verticalLayout_2)
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_9.setContentsMargins(-1, 15, -1, -1)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_5.setMinimumSize(QtCore.QSize(100, 40))
-        self.pushButton_5.setMaximumSize(QtCore.QSize(100, 40))
-        self.pushButton_5.setStyleSheet("QPushButton {\n"
+        self.horizontalLayout_13 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_13.setObjectName("horizontalLayout_13")
+        self.videobutton = QtWidgets.QPushButton(self.frame)
+        self.videobutton.setMinimumSize(QtCore.QSize(150, 40))
+        self.videobutton.setMaximumSize(QtCore.QSize(150, 40))
+        self.videobutton.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(200, 215, 218);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -254,8 +255,38 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.horizontalLayout_9.addWidget(self.pushButton_5)
+        self.videobutton.setObjectName("videobutton")
+        self.horizontalLayout_13.addWidget(self.videobutton)
+        self.label_8 = QtWidgets.QLabel(self.frame)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_8.setFont(font)
+        self.label_8.setStyleSheet("color:rgb(115, 130, 140);")
+        self.label_8.setObjectName("label_8")
+        self.horizontalLayout_13.addWidget(self.label_8)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_13)
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_9.setContentsMargins(-1, 15, -1, -1)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.imagebutton = QtWidgets.QPushButton(self.frame)
+        self.imagebutton.setMinimumSize(QtCore.QSize(115, 40))
+        self.imagebutton.setMaximumSize(QtCore.QSize(115, 40))
+        self.imagebutton.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(200, 215, 218);\n"
+"    color: white;\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    font-weight: bold;\n"
+"    font-size: 14px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color:rgb(90, 128, 143);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(90, 128, 143);\n"
+"}")
+        self.imagebutton.setObjectName("imagebutton")
+        self.horizontalLayout_9.addWidget(self.imagebutton)
         self.label_4 = QtWidgets.QLabel(self.frame)
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -263,10 +294,10 @@ class Ui_MainWindow(object):
         self.label_4.setStyleSheet("color:rgb(115, 130, 140);")
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_9.addWidget(self.label_4)
-        self.pushButton_6 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_6.setMinimumSize(QtCore.QSize(200, 40))
-        self.pushButton_6.setMaximumSize(QtCore.QSize(200, 40))
-        self.pushButton_6.setStyleSheet("QPushButton {\n"
+        self.search = QtWidgets.QPushButton(self.frame)
+        self.search.setMinimumSize(QtCore.QSize(200, 40))
+        self.search.setMaximumSize(QtCore.QSize(200, 40))
+        self.search.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(101, 144, 161);\n"
 "    color: white;\n"
 "    border-radius: 5px;\n"
@@ -280,8 +311,8 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(90, 128, 143);\n"
 "}")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.horizontalLayout_9.addWidget(self.pushButton_6)
+        self.search.setObjectName("search")
+        self.horizontalLayout_9.addWidget(self.search)
         self.verticalLayout_3.addLayout(self.horizontalLayout_9)
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
@@ -316,6 +347,7 @@ class Ui_MainWindow(object):
         self.label_6.setObjectName("label_6")
         self.horizontalLayout_10.addWidget(self.label_6)
         self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+        self.verticalLayout_4.addLayout(self.verticalLayout_3)
         self.horizontalLayout_12.addWidget(self.frame)
         spacerItem3 = QtWidgets.QSpacerItem(34, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_12.addItem(spacerItem3)
@@ -363,13 +395,15 @@ class Ui_MainWindow(object):
         self.home.setText(_translate("MainWindow", "Home"))
         self.clicking.setText(_translate("MainWindow", "Add Camera"))
         self.person.setText(_translate("MainWindow", "Search Person"))
-        self.pushButton_7.setText(_translate("MainWindow", "List User"))
-        self.pushButton_4.setText(_translate("MainWindow", "Logout"))
+        self.List.setText(_translate("MainWindow", "List User"))
+        self.log.setText(_translate("MainWindow", "Logout"))
         self.label_10.setText(_translate("MainWindow", "Search for a person"))
         self.label_11.setText(_translate("MainWindow", "Upload a picture to search across camera feeds "))
-        self.pushButton_5.setText(_translate("MainWindow", "Choose File"))
+        self.videobutton.setText(_translate("MainWindow", "Choose video"))
+        self.label_8.setText(_translate("MainWindow", "No file chosen"))
+        self.imagebutton.setText(_translate("MainWindow", "Choose image"))
         self.label_4.setText(_translate("MainWindow", "No file chosen"))
-        self.pushButton_6.setText(_translate("MainWindow", "Search"))
+        self.search.setText(_translate("MainWindow", "Search"))
         self.label_5.setText(_translate("MainWindow", "Result"))
         self.label_6.setText(_translate("MainWindow", "Camera location"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))

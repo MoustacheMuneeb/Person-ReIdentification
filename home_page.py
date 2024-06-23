@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(826, 571)
+        MainWindow.resize(842, 571)
         MainWindow.setStyleSheet("background-color:rgb(17, 25, 31)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -36,9 +36,11 @@ class Ui_MainWindow(object):
         self.left_header.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.left_header.setFrameShadow(QtWidgets.QFrame.Raised)
         self.left_header.setObjectName("left_header")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.left_header)
-        self.horizontalLayout_2.setContentsMargins(5, 0, 0, 0)
-        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.left_header)
+        self.horizontalLayout_11.setContentsMargins(5, 0, 0, 0)
+        self.horizontalLayout_11.setSpacing(0)
+        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label_2 = QtWidgets.QLabel(self.left_header)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -65,6 +67,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.label_3)
         spacerItem = QtWidgets.QSpacerItem(30, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
+        self.horizontalLayout_11.addLayout(self.horizontalLayout_2)
         self.horizontalLayout_8.addWidget(self.left_header)
         self.right_header = QtWidgets.QFrame(self.Header)
         font = QtGui.QFont()
@@ -377,6 +380,7 @@ class Ui_MainWindow(object):
         self.label_12.setText(_translate("MainWindow", "Camera 3"))
         self.image_label.setText(_translate("MainWindow", "Camera 1"))
         self.label.setText(_translate("MainWindow", "Version 1.0 | Copyright © ReID"))
+
 import source
 
 

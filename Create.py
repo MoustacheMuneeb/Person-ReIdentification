@@ -1,6 +1,7 @@
 import mysql.connector
 import sys
 import re
+import os
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt, QRegularExpression
@@ -98,6 +99,7 @@ class HomeScreen(QtWidgets.QMainWindow):
         loadUi("home_page.ui", self)
         self.widget = widget
         self.search_person.clicked.connect(self.gotosearch)
+        print("mm")
         self.camera.clicked.connect(self.addcamera)
         self.List.clicked.connect(self.adduser)
         self.log.clicked.connect(self.gotologin)
@@ -105,6 +107,14 @@ class HomeScreen(QtWidgets.QMainWindow):
         self.initUI()
 
     def initUI(self):
+        self.setGeometry(100, 100, 300, 700)  # Set the geometry of the main window
+        self.setWindowTitle('Camera Stream')
+
+        # Create a label that will display the images from the video
+        self.image_label = QtWidgets.QLabel(self)
+        self.image_label.resize(300, 700)  # Set the size of the label to fit the desired window size
+        self.image_label.setAlignment(Qt.AlignCenter)  # Center align the image
+
         if self.rtsp_url:
             self.display_stream(self.rtsp_url)
 
@@ -118,15 +128,16 @@ class HomeScreen(QtWidgets.QMainWindow):
         ret, frame = self.capture.read()
         if ret:
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            height, width, channel = image.shape
-            step = channel * width
-            qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
-            self.image_label.setPixmap(QPixmap.fromImage(qImg))
+            h, w, ch = image.shape
+            bytes_per_line = ch * w
+            convert_to_Qt_format = QImage(image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+            pixmap = QPixmap.fromImage(convert_to_Qt_format)
+            resized_pixmap = pixmap.scaled(self.image_label.width(), self.image_label.height(), Qt.KeepAspectRatio)
+            self.image_label.setPixmap(resized_pixmap)
 
     def closeEvent(self, event):
         if self.capture.isOpened():
             self.capture.release()
-
     def gotologin(self):
         back = LoginScreen(self.widget)
         self.widget.addWidget(back)
@@ -139,6 +150,7 @@ class HomeScreen(QtWidgets.QMainWindow):
 
     def gotosearch(self):
         search_person = SearchPerson(self.widget)
+        print("misha")
         self.widget.addWidget(search_person)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
@@ -174,6 +186,26 @@ class Search_user_person(QtWidgets.QMainWindow):
         self.widget = widget
         self.home.clicked.connect(self.gotohomeuser)
         self.log.clicked.connect(self.gotologin)
+        self.imagebutton.clicked.connect(self.openFileDialog)
+        self.videobutton.clicked.connect(self.openVideoFileDialog)
+
+    def openFileDialog(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(None, "Select Picture", "",
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+        if file_name:
+            pixmap = QPixmap(file_name)
+            self.label_4.setPixmap(
+                pixmap.scaled(self.label_4.size(), Qt.KeepAspectRatio))
+
+    def openVideoFileDialog(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(self, "Select Video", "",
+                                                   "Videos (*.mp4 *.avi *.mov);;All Files (*)", options=options)
+        if file_name:
+            self.video_path = file_name
+            self.label_8.setText(file_name)
+            self.label_8.setToolTip(file_name)
 
     def gotohomeuser(self):
         goto = HomeUserScreen(self.widget)
@@ -191,11 +223,13 @@ class SearchPerson(QtWidgets.QMainWindow):
         super(SearchPerson, self).__init__()
         loadUi("search_Admin.ui", self)
         self.widget = widget
+        print("mishamuneeb")
         self.home.clicked.connect(self.gotohome)
         self.log.clicked.connect(self.gotologin)
         self.clicking.clicked.connect(self.addcamera)
         self.List.clicked.connect(self.adduser)
-        self.pushButton_5.clicked.connect(self.open_file_dialog)
+        self.imagebutton.clicked.connect(self.openFileDialog)
+        self.videobutton.clicked.connect(self.openVideoFileDialog)
 
     def addcamera(self):
         search_person = AddCamera(self.widget)
@@ -207,16 +241,23 @@ class SearchPerson(QtWidgets.QMainWindow):
         self.widget.addWidget(back)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
-    def open_file_dialog(self):
+    def openFileDialog(self):
         options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        file_dialog = QFileDialog(self)
-        file_dialog.setStyleSheet("background-color: white;")
-        file_path, _ = file_dialog.getOpenFileName(self, "Choose File", "", "All Files (*);;Text Files (*.txt)",
-                                                   options=options)
-        if file_path:
-            self.label_4.setText(file_path)
-            self.label_4.setStyleSheet("color: white;")
+        file_name, _ = QFileDialog.getOpenFileName(None, "Select Picture", "",
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+        if file_name:
+            pixmap = QPixmap(file_name)
+            self.label_4.setPixmap(
+                pixmap.scaled(self.label_4.size(), Qt.KeepAspectRatio))
+
+    def openVideoFileDialog(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(self, "Select Video", "",
+                                                   "Videos (*.mp4 *.avi *.mov);;All Files (*)", options=options)
+        if file_name:
+            self.video_path = file_name
+            self.label_8.setText(file_name)
+            self.label_8.setToolTip(file_name)
 
     def adduser(self):
         back = ListUser(self.widget)
@@ -247,10 +288,10 @@ class AddCamera(QMainWindow):
 
     def save_camera(self):
         print("misha1")
-        camera_name = self.CameraName.text()  # assuming CameraName is the object name for camera name field
-        ip_address = self.IPAddress.text()  # assuming IPAddress is the object name for IP address field
-        location = self.Location.toPlainText()  # assuming Location is the object name for location field
-        rtsp_url = f"rtsp://{ip_address}:554/stream1"  # Convert IP address to RTSP URL
+        camera_name = self.CameraName.text()
+        ip_address = self.IPAddress.text()
+        location = self.Location.toPlainText()
+        rtsp_url = f"rtsp://{ip_address}:554/stream1"
         if self.save_camera_configuration(camera_name, rtsp_url, location):
             self.gotohome(rtsp_url)
 
