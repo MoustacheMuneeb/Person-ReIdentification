@@ -263,7 +263,7 @@ class AddCamera(QMainWindow):
                 database="mydata"
             )
             cursor = mydb.cursor()
-            sql = "INSERT INTO Cameras (CameraName, IPAddress, Location) VALUES (%s, %s, %s)"
+            sql = "INSERT INTO cameraconfig (CameraName, IPAddress, Location) VALUES (%s, %s, %s)"
             val = (camera_name, ip_address, location)
             cursor.execute(sql, val)
             mydb.commit()
