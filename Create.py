@@ -2,17 +2,20 @@ import mysql.connector
 import sys
 import re
 import os
+import logging
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt, QRegularExpression
 from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QPushButton, QCheckBox, QLabel, QWidget, QHBoxLayout, \
-    QFileDialog
-from PyQt5.QtGui import QRegularExpressionValidator, QColor
+    QFileDialog, QMessageBox
+from PyQt5.QtGui import QRegularExpressionValidator
 
 from PyQt5.QtWidgets import QVBoxLayout, QWidget
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer
 import cv2
+from person import main
+
 
 class Welcomescreen(QtWidgets.QMainWindow):
     def __init__(self, widget):
@@ -105,14 +108,13 @@ class HomeScreen(QtWidgets.QMainWindow):
         self.log.clicked.connect(self.gotologin)
         self.rtsp_url = rtsp_url
         self.initUI()
-
     def initUI(self):
-        self.setGeometry(100, 100, 300, 700)  # Set the geometry of the main window
+        self.setGeometry(100, 100, 250, 200)  # Set the geometry of the main window
         self.setWindowTitle('Camera Stream')
 
         # Create a label that will display the images from the video
         self.image_label = QtWidgets.QLabel(self)
-        self.image_label.resize(300, 700)  # Set the size of the label to fit the desired window size
+        self.image_label.resize(250, 200)  # Set the size of the label to fit the desired window size
         self.image_label.setAlignment(Qt.AlignCenter)  # Center align the image
 
         if self.rtsp_url:
@@ -138,6 +140,7 @@ class HomeScreen(QtWidgets.QMainWindow):
     def closeEvent(self, event):
         if self.capture.isOpened():
             self.capture.release()
+
     def gotologin(self):
         back = LoginScreen(self.widget)
         self.widget.addWidget(back)
@@ -186,26 +189,53 @@ class Search_user_person(QtWidgets.QMainWindow):
         self.widget = widget
         self.home.clicked.connect(self.gotohomeuser)
         self.log.clicked.connect(self.gotologin)
+        self.image_path = None
+        self.video_path = None
+        self.search.clicked.connect(self.performSearch)
         self.imagebutton.clicked.connect(self.openFileDialog)
         self.videobutton.clicked.connect(self.openVideoFileDialog)
 
     def openFileDialog(self):
-        options = QFileDialog.Options()
-        file_name, _ = QFileDialog.getOpenFileName(None, "Select Picture", "",
-                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
-        if file_name:
-            pixmap = QPixmap(file_name)
-            self.label_4.setPixmap(
-                pixmap.scaled(self.label_4.size(), Qt.KeepAspectRatio))
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Image Files (*.png *.jpeg *.jpg)")
+        if fileName:
+            self.image_path = fileName
+            self.label_4.setText(fileName)
 
     def openVideoFileDialog(self):
-        options = QFileDialog.Options()
-        file_name, _ = QFileDialog.getOpenFileName(self, "Select Video", "",
-                                                   "Videos (*.mp4 *.avi *.mov);;All Files (*)", options=options)
-        if file_name:
-            self.video_path = file_name
-            self.label_8.setText(file_name)
-            self.label_8.setToolTip(file_name)
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open Video", "", "Video Files (*.mp4 *.avi)")
+        if fileName:
+            self.video_path = fileName
+            self.label_8.setText(fileName)
+
+    def performSearch(self):
+        if not self.image_path or not self.video_path:
+            QMessageBox.warning(self, 'Error', 'Please select both an image and a video.')
+            return
+
+        try:
+            person_found, person_image_path = main(self.image_path, self.video_path)
+            if person_found and person_image_path:
+                full_image_path = os.path.abspath(person_image_path)  # Ensures the full path is used
+                if os.path.exists(full_image_path):
+                    pixmap = QtGui.QPixmap(full_image_path)
+                    if not pixmap.isNull():
+                        # Check label size and scale pixmap accordingly
+                        scaled_pixmap = pixmap.scaled(self.label_5.size(), QtCore.Qt.KeepAspectRatio,
+                                                      QtCore.Qt.SmoothTransformation)
+                        self.label_5.setPixmap(scaled_pixmap)
+                        QMessageBox.information(self, "Result", "Matching person found.")
+                    else:
+                        QMessageBox.warning(self, "Error", "Failed to load the image.")
+                        self.label_5.setText("Failed to load image.")
+                else:
+                    QMessageBox.warning(self, "Error", "Image file does not exist.")
+                    self.label_5.clear()
+            else:
+                QMessageBox.information(self, "Result", "No matching person found.")
+                self.label_5.clear()
+        except Exception as e:
+            QMessageBox.critical(self, "Error", str(e))
+            self.label_5.clear()
 
     def gotohomeuser(self):
         goto = HomeUserScreen(self.widget)
@@ -218,58 +248,85 @@ class Search_user_person(QtWidgets.QMainWindow):
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
 
+logging.basicConfig(level=logging.DEBUG, filename="app.log", filemode="a", format='%(name)s - %(levelname)s - %(message)s')
+
+
 class SearchPerson(QtWidgets.QMainWindow):
     def __init__(self, widget):
         super(SearchPerson, self).__init__()
         loadUi("search_Admin.ui", self)
         self.widget = widget
-        print("mishamuneeb")
         self.home.clicked.connect(self.gotohome)
         self.log.clicked.connect(self.gotologin)
         self.clicking.clicked.connect(self.addcamera)
         self.List.clicked.connect(self.adduser)
+        self.image_path = None
+        self.video_path = None
+        self.search.clicked.connect(self.performSearch)
         self.imagebutton.clicked.connect(self.openFileDialog)
         self.videobutton.clicked.connect(self.openVideoFileDialog)
 
+    def openFileDialog(self):
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Image Files (*.png *.jpeg *.jpg)")
+        if fileName:
+            self.image_path = fileName
+            self.label_4.setText(fileName)
+
+    def openVideoFileDialog(self):
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open Video", "", "Video Files (*.mp4 *.avi)")
+        if fileName:
+            self.video_path = fileName
+            self.label_8.setText(fileName)
+
+    def performSearch(self):
+        if not self.image_path or not self.video_path:
+            QMessageBox.warning(self, 'Error', 'Please select both an image and a video.')
+            return
+
+        try:
+            person_found, person_image_path = main(self.image_path, self.video_path)
+            if person_found and person_image_path:
+                full_image_path = os.path.abspath(person_image_path)  # Ensures the full path is used
+                if os.path.exists(full_image_path):
+                    pixmap = QtGui.QPixmap(full_image_path)
+                    if not pixmap.isNull():
+                        # Check label size and scale pixmap accordingly
+                        scaled_pixmap = pixmap.scaled(self.label_5.size(), QtCore.Qt.KeepAspectRatio,
+                                                      QtCore.Qt.SmoothTransformation)
+                        self.label_5.setPixmap(scaled_pixmap)
+                        QMessageBox.information(self, "Result", "Matching person found.")
+                    else:
+                        QMessageBox.warning(self, "Error", "Failed to load the image.")
+                        self.label_5.setText("Failed to load image.")
+                else:
+                    QMessageBox.warning(self, "Error", "Image file does not exist.")
+                    self.label_5.clear()
+            else:
+                QMessageBox.information(self, "Result", "No matching person found.")
+                self.label_5.clear()
+        except Exception as e:
+            QMessageBox.critical(self, "Error", str(e))
+            self.label_5.clear()
+
     def addcamera(self):
-        search_person = AddCamera(self.widget)
-        self.widget.addWidget(search_person)
+        camera_screen = AddCamera(self.widget)
+        self.widget.addWidget(camera_screen)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
     def gotologin(self):
-        back = LoginScreen(self.widget)
-        self.widget.addWidget(back)
+        login_screen = LoginScreen(self.widget)
+        self.widget.addWidget(login_screen)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
-    def openFileDialog(self):
-        options = QFileDialog.Options()
-        file_name, _ = QFileDialog.getOpenFileName(None, "Select Picture", "",
-                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
-        if file_name:
-            pixmap = QPixmap(file_name)
-            self.label_4.setPixmap(
-                pixmap.scaled(self.label_4.size(), Qt.KeepAspectRatio))
-
-    def openVideoFileDialog(self):
-        options = QFileDialog.Options()
-        file_name, _ = QFileDialog.getOpenFileName(self, "Select Video", "",
-                                                   "Videos (*.mp4 *.avi *.mov);;All Files (*)", options=options)
-        if file_name:
-            self.video_path = file_name
-            self.label_8.setText(file_name)
-            self.label_8.setToolTip(file_name)
-
     def adduser(self):
-        back = ListUser(self.widget)
-        self.widget.addWidget(back)
+        user_screen = ListUser(self.widget)
+        self.widget.addWidget(user_screen)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
 
     def gotohome(self):
         home_screen = HomeScreen(self.widget)
         self.widget.addWidget(home_screen)
         self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
-
-
 class AddCamera(QMainWindow):
     def __init__(self, widget):
         super(AddCamera, self).__init__()
